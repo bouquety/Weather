@@ -32,7 +32,7 @@ export default {
   name:'app',
   data(){
     return {
-      url_base: 'https://api.openweathermap.org/data/2.5/onecall?lat=48.861&lon=2.346&units=metric&exclude=hourly,alerts,minutely&appid=5da4e48a1ad5e8c02e2910dc7c0b76d6',
+      url_weather: 'https://api.openweathermap.org/data/2.5/onecall?lat=48.861&lon=2.346&units=metric&exclude=hourly,alerts,minutely&appid=5da4e48a1ad5e8c02e2910dc7c0b76d6',
       date: ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche','Lundi'],
       weather:{},
     } 
@@ -42,7 +42,7 @@ export default {
     },
   methods: {
     getWeather (){
-        this.$axios.$post(this.url_base)
+        this.$axios.$post(this.url_weather)
         .then(resp => {
             this.weather= resp
         })
@@ -57,8 +57,8 @@ export default {
 <style scoped>
 #app{
   background-image: url("../static/couleur-vert-1.jpg");
-  background-size: cover;
   height: 100vh;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.25),rgba(0,0,0,0.75));
 }
 
 .localisationDate .localisation{
