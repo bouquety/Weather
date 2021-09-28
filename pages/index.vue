@@ -12,7 +12,8 @@
     </div>
     <div class="temperatureTemps">
       <div class="temperature"> {{ Math.round(weather.daily[index].temp.day) }}</div>
-      <div class="temps">{{ weather.daily[index].weather[0].main }}</div>
+      <div class="temps" v-if="weather.daily[index].weather[0].main=='Clouds' ">Nuageux</div>
+      <div class="temps" v-else>Pluie</div>
     </div>
 
 </b-col>
@@ -31,8 +32,9 @@
 export default {
   name:'app',
   data(){
+    this.api_key = process.env.api_key
     return {
-      url_weather: 'https://api.openweathermap.org/data/2.5/onecall?lat=48.861&lon=2.346&units=metric&exclude=hourly,alerts,minutely&appid=5da4e48a1ad5e8c02e2910dc7c0b76d6',
+      url_weather: 'https://api.openweathermap.org/data/2.5/onecall?lat=48.861&lon=2.346&units=metric&exclude=hourly,alerts,minutely&appid='+this.api_key,
       date: ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche','Lundi'],
       weather:{},
     } 
@@ -56,7 +58,7 @@ export default {
 
 <style scoped>
 #app{
-  background-image: url("../static/couleur-vert-1.jpg");
+  background-image: url("../static/blue-blue-blue-gradation-wallpaper-preview.jpg");
   height: 100vh;
   background-image: linear-gradient(to bottom, rgba(0,0,0,0.25),rgba(0,0,0,0.75));
 }
